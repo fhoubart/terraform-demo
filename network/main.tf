@@ -3,15 +3,15 @@ resource "aws_vpc" "labvpc" {
 }
 
 resource "aws_subnet" "public_subnet" {
-    vpc_id = aws_vpc.labvpc.id
-    cidr_block = "10.0.0.0/24"
-    tags = {
-        Name = "public_subnet"
-    }
+  vpc_id     = aws_vpc.labvpc.id
+  cidr_block = "10.0.0.0/24"
+  tags = {
+    Name = "public_subnet"
+  }
 }
 
 resource "aws_internet_gateway" "gw" {
-    // Not needed because of aws_internet_gateway_attachment below do the same
+  // Not needed because of aws_internet_gateway_attachment below do the same
   //vpc_id = aws_vpc.labvpc.id
 
   tags = {
@@ -25,9 +25,9 @@ resource "aws_internet_gateway_attachment" "gwattachment" {
 }
 
 resource "aws_route_table" "public_route_table" {
-    depends_on = [
-      aws_internet_gateway_attachment.gwattachment
-    ]
+  depends_on = [
+    aws_internet_gateway_attachment.gwattachment
+  ]
   vpc_id = aws_vpc.labvpc.id
 
   route {
