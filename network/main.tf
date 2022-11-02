@@ -11,6 +11,7 @@ resource "aws_subnet" "public_subnet" {
 }
 
 resource "aws_internet_gateway" "gw" {
+    // Not needed because of aws_internet_gateway_attachment below do the same
   //vpc_id = aws_vpc.labvpc.id
 
   tags = {
