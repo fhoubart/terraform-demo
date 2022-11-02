@@ -13,5 +13,7 @@ provider "aws" {
 }
 
 # Create a VPC
-module "./network" {}
+module "network" {
+  source = "./network"
+}
 
