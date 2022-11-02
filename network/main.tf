@@ -11,7 +11,7 @@ resource "aws_subnet" "public_subnet" {
 }
 
 resource "aws_internet_gateway" "gw" {
-  vpc_id = aws_vpc.labvpc.id
+  //vpc_id = aws_vpc.labvpc.id
 
   tags = {
     Name = "main"
