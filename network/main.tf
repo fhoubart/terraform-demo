@@ -2,7 +2,7 @@ resource "aws_vpc" "labvpc" {
   cidr_block = "10.0.0.0/16"
 }
 
-resource "aws_subet" "public_subnet" {
+resource "aws_subnet" "public_subnet" {
     vpc_id = aws_vpc.labvpc.id
     cidr_block = "10.0.0.0/24"
     tags = {
@@ -11,7 +11,7 @@ resource "aws_subet" "public_subnet" {
 }
 
 resource "aws_internet_gateway" "gw" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.labvpc.id
 
   tags = {
     Name = "main"
