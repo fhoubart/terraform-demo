@@ -27,7 +27,7 @@ resource "aws_route_table" "public_route_table" {
     depends_on = [
       aws_internet_gateway_attachment.gwattachment
     ]
-  vpc_id = aws_vpc.example.id
+  vpc_id = aws_vpc.labvpc.id
 
   route {
     cidr_block = "0.0.0.0/24"
