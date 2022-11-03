@@ -68,6 +68,21 @@ resource "aws_instance" "web" {
   subnet_id = aws_subnet.public_subnet.id
   associate_public_ip_address = true
   vpc_security_group_ids = [aws_security_group.allow_web.id]
+  user_data = <<EOF
+#!/bin/sh
+yum install -y httpd git
+systemctl start httpd
+systemctl enable httpd
+usermod -a -G apache ec2-user
+chown -R ec2-user:apache /var/www
+chmod 2775 /var/www
+find /var/www -type d -exec chmod 2775 {} \;
+find /var/www -type f -exec chmod 0664 {} \;
+cd /tmp
+git clone https://bitbucket.org/fhoubart/testphaser_aws.git
+mv testphaser_aws/public_html/* /var/www/html
+EOF
+  user_data_replace_on_change = true
   /*network_interface {
     network_interface_id = aws_network_interface.networkinterface.id
     device_index         = 0
