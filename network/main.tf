@@ -66,6 +66,7 @@ resource "aws_instance" "web" {
   ami = "ami-0ff8a91507f77f867"
   instance_type = "t2.micro"
   associate_public_ip_address = true
+  security_groups = [aws_security_group.allow_web]
   /*network_interface {
     network_interface_id = aws_network_interface.networkinterface.id
     device_index         = 0
@@ -73,5 +74,33 @@ resource "aws_instance" "web" {
   tags = {
     Name = "Web"
     terraform_stack = "network-${var.name}"
+  }
+}
+
+resource "aws_security_group" "allow_web" {
+  name        = "allow_web"
+  description = "Allow web inbound traffic"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    description      = "Web"
+    from_port        = 80
+    to_port          = 80
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    //ipv6_cidr_blocks = [aws_vpc.main.ipv6_cidr_block]
+  }
+
+  ingress {
+    description      = "SSH"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    //ipv6_cidr_blocks = [aws_vpc.main.ipv6_cidr_block]
+  }
+
+  tags = {
+    Name = "allow_tls"
   }
 }
