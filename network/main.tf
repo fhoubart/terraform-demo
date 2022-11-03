@@ -80,7 +80,7 @@ resource "aws_instance" "web" {
 resource "aws_security_group" "allow_web" {
   name        = "allow_web"
   description = "Allow web inbound traffic"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = aws_vpc.labvpc.id
 
   ingress {
     description      = "Web"
