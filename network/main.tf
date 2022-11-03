@@ -68,7 +68,7 @@ resource "aws_instance" "web" {
   subnet_id = aws_subnet.public_subnet.id
   associate_public_ip_address = true
   vpc_security_group_ids = [aws_security_group.allow_web.id]
-  user_data = <<EOF
+/*  user_data = <<EOF
 #!/bin/sh
 echo "Starting user data script"
 yum install -y httpd git
@@ -83,7 +83,7 @@ cd /tmp
 git clone https://bitbucket.org/fhoubart/testphaser_aws.git
 mv testphaser_aws/public_html/* /var/www/html
 EOF
-  user_data_replace_on_change = true
+  user_data_replace_on_change = true*/
   /*network_interface {
     network_interface_id = aws_network_interface.networkinterface.id
     device_index         = 0
