@@ -58,10 +58,10 @@ resource "aws_instance" "web" {
   ami = "ami-0ff8a91507f77f867"
   instance_type = "t2.micro"
   associate_public_ip_address = true
-  network_interface {
+  /*network_interface {
     network_interface_id = aws_network_interface.networkinterface.id
     device_index         = 0
-  }
+  }*/
   tags = {
     Name = "Web"
   }
