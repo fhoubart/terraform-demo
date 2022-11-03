@@ -18,5 +18,8 @@ provider "aws" {
 # Create a VPC
 module "network" {
   source = "./network"
+  vpc_scope = "10.1.0.0/16"
+  subnet_scope = "10.1.0.0/24"
+  name = "lab"
 }
 

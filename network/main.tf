@@ -1,12 +1,17 @@
 resource "aws_vpc" "labvpc" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = var.vpc_scope
+  tags = {
+    Name = "${var.name}-vpc"
+    terraform_stack = "network-${var.name}"
+  }
 }
 
 resource "aws_subnet" "public_subnet" {
   vpc_id     = aws_vpc.labvpc.id
-  cidr_block = "10.0.0.0/24"
+  cidr_block = var.subnet_scope
   tags = {
-    Name = "public_subnet"
+    Name = "${var.name}-public_subnet"
+    terraform_stack = "network-${var.name}"
   }
 }
 
@@ -15,7 +20,8 @@ resource "aws_internet_gateway" "gw" {
   //vpc_id = aws_vpc.labvpc.id
 
   tags = {
-    Name = "main"
+    Name = "${var.name}-IGW"
+    terraform_stack = "network-${var.name}"
   }
 }
 
@@ -36,7 +42,8 @@ resource "aws_route_table" "public_route_table" {
   }
 
   tags = {
-    Name = "public_route_table"
+    Name = "${var.name}-public_route_table"
+    terraform_stack = "network-${var.name}"
   }
 }
 
@@ -51,6 +58,7 @@ resource "aws_network_interface" "networkinterface" {
 
   tags = {
     Name = "primary_network_interface"
+    terraform_stack = "network-${var.name}"
   }
 }
 
@@ -64,5 +72,6 @@ resource "aws_instance" "web" {
   }*/
   tags = {
     Name = "Web"
+    terraform_stack = "network-${var.name}"
   }
 }
