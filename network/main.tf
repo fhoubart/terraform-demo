@@ -65,8 +65,9 @@ resource "aws_network_interface" "networkinterface" {
 resource "aws_instance" "web" {
   ami = "ami-0ff8a91507f77f867"
   instance_type = "t2.micro"
+  subnet_id = aws_subnet.public_subnet.id
   associate_public_ip_address = true
-  security_groups = [aws_security_group.allow_web.id]
+  vpc_security_groups = [aws_security_group.allow_web.id]
   /*network_interface {
     network_interface_id = aws_network_interface.networkinterface.id
     device_index         = 0
