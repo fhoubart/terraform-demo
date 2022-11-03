@@ -70,6 +70,7 @@ resource "aws_instance" "web" {
   vpc_security_group_ids = [aws_security_group.allow_web.id]
   user_data = <<EOF
 #!/bin/sh
+echo "Starting user data script"
 yum install -y httpd git
 systemctl start httpd
 systemctl enable httpd
