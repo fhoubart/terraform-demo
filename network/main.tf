@@ -82,8 +82,8 @@ find /var/www -type f -exec chmod 0664 {} \;
 cd /tmp
 git clone https://bitbucket.org/fhoubart/testphaser_aws.git
 mv testphaser_aws/public_html/* /var/www/html
-EOF
-  user_data_replace_on_change = true*/
+EOF*/
+  user_data_replace_on_change = true
   /*network_interface {
     network_interface_id = aws_network_interface.networkinterface.id
     device_index         = 0
