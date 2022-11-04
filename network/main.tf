@@ -90,7 +90,7 @@ EOF
     device_index         = 0
   }*/
   tags = {
-    Name = "Web"
+    Name = "Web-${var.name}"
     terraform_stack = "network-${var.name}"
   }
 }
