@@ -5,6 +5,12 @@ terraform {
       version = "~> 4.0"
     }
   }
+
+  backend "s3" {
+    bucket = "tf-state-flo"
+    key    = "terraform.state"
+    region = "us-east-1"
+  }
 }
 
 # AWS provider documentation
@@ -22,4 +28,3 @@ module "network" {
   subnet_scope = "10.1.0.0/24"
   name = "lab"
 }
-
