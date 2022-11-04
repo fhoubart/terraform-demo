@@ -72,7 +72,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Starting init
-    - run: echo "Starting terraform init"
+      run: echo "Starting terraform init"
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
 #    - name: Setup Terraform
@@ -93,7 +93,7 @@ jobs:
 #      run: terraform plan -input=false
 
     - name: Starting apply
-    - run: echo "Starting terraform apply"
+      run: echo "Starting terraform apply"
     
       # On push to "master", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
