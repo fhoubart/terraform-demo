@@ -106,7 +106,7 @@ resource "aws_security_group" "allow_web" {
     to_port          = 80
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
-    //ipv6_cidr_blocks = [aws_vpc.main.ipv6_cidr_block]
+    ipv6_cidr_blocks = ["::/0"]
   }
 
   ingress {
@@ -115,7 +115,7 @@ resource "aws_security_group" "allow_web" {
     to_port          = 22
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
-    //ipv6_cidr_blocks = [aws_vpc.main.ipv6_cidr_block]
+    ipv6_cidr_blocks = ["::/0"]
   }
 
   egress {
