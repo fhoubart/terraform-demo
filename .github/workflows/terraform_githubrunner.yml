@@ -70,7 +70,7 @@ jobs:
       run: echo "Starting job, checkout"
 
     - name: Install
-      run: apt-get install terraform
+      run: sudo apt-get update && sudo apt-get install terraform
 
     - name: Checkout
       uses: actions/checkout@v3
